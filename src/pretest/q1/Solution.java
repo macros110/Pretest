@@ -1,12 +1,12 @@
 package pretest.q1;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 
 public class Solution {
 	public  Set<String> findWords(Set<String> wordSet){
-		Set<String> set = new HashSet<>();
+		Set<String> set = new LinkedHashSet<>();
 		for (String word : wordSet) {
 			if(isOneLine4KeyBoard(word)){
 				set.add(word);
@@ -43,7 +43,7 @@ public class Solution {
 	}	
 	public static void main(String[] args) {
 		Solution solution = new Solution();
-		Set<String> set = new HashSet<>();
+		Set<String> set = new LinkedHashSet<>();
 		set.add("life");
 		set.add("require");
 		set.add("option");
