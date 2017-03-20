@@ -23,12 +23,12 @@ public class Solution {
 		if (sum == total && rootNode.left == null && rootNode.right == null){
 			return nodes;
 		}
-		if (sum != total && rootNode.left == null && rootNode.right == null){
+//		if (sum != total && rootNode.left == null && rootNode.right == null){
 //			rootNode = nodes.get(0);
 //			nodes.clear();
 //			total = 0;
 
-		}
+//		}
 		if (rootNode.left != null) {
 			findPath(rootNode.left, sum);
 		}
