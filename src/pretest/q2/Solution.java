@@ -13,26 +13,34 @@ public class Solution {
 			return "Node:"+ value;
 		}
 	}
+
 	public List<Node> findPath(Node rootNode,int sum){
-		List<Node> nodes = new ArrayList<>();
-		Node bufNode = rootNode;
-		int total = 0;
+		if(rootNode == null){
+			return null;
+		}
+		total += rootNode.value;
 		nodes.add(rootNode);
-//		while(!(bufNode.right == null && bufNode.left == null)){			
-//			total += bufNode.value;
-//			bufNode = bufNode.left;
-//		}
+		if (sum == total && rootNode.left == null && rootNode.right == null){
+			return nodes;
+		}
+		if (sum != total && rootNode.left == null && rootNode.right == null){
+//			rootNode = nodes.get(0);
+//			nodes.clear();
+//			total = 0;
+
+		}
+		if (rootNode.left != null) {
+			findPath(rootNode.left, sum);
+		}
+		if (rootNode.right != null) {
+			findPath(rootNode.right, sum);
+		}
+		total -= rootNode.value;
+		nodes.remove(nodes.size()-1);
 		return nodes;
 	}
-	
-	private int sumOfNodeList(List<Node> nodes){
-		int sum = 0;
-		for (Node node : nodes) {
-			sum += node.value;
-		}
-		return sum;
-	}
-	
+	List<Node> nodes = new ArrayList<>();
+	int total  = 0;
 	
 	public static void main(String[] args) {
 		Solution sol = new Solution();
