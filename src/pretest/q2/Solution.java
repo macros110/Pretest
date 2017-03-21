@@ -13,34 +13,36 @@ public class Solution {
 			return "Node:"+ value;
 		}
 	}
-
 	public List<Node> findPath(Node rootNode,int sum){
-		if(rootNode == null){
-			return null;
-		}
-		total += rootNode.value;
-		nodes.add(rootNode);
-		if (sum == total && rootNode.left == null && rootNode.right == null){
-			return nodes;
-		}
-//		if (sum != total && rootNode.left == null && rootNode.right == null){
-//			rootNode = nodes.get(0);
-//			nodes.clear();
-//			total = 0;
+		ArrayList<ArrayList<Node>> paths = new ArrayList<>();
+		findPaths(rootNode, 15, paths);
+		return paths.get(0);
+	}
 
-//		}
+	private ArrayList<Node> nodes = new ArrayList<>();
+	private int curSum = 0;
+
+	private void findPaths(Node rootNode,int sum,ArrayList<ArrayList<Node>> paths){
+		if(rootNode == null){
+			return;
+		}
+		curSum += rootNode.value;
+		nodes.add(rootNode);
+		if (sum == curSum && rootNode.left == null && rootNode.right == null){
+//			System.out.println(nodes);
+			paths.add((ArrayList<Node>)nodes.clone());
+//			System.out.println(paths);
+		}
+
 		if (rootNode.left != null) {
-			findPath(rootNode.left, sum);
+			findPaths(rootNode.left, sum , paths);
 		}
 		if (rootNode.right != null) {
-			findPath(rootNode.right, sum);
+			findPaths(rootNode.right, sum , paths);
 		}
-		total -= rootNode.value;
+		curSum -= rootNode.value;
 		nodes.remove(nodes.size()-1);
-		return nodes;
 	}
-	List<Node> nodes = new ArrayList<>();
-	int total  = 0;
 	
 	public static void main(String[] args) {
 		Solution sol = new Solution();
@@ -75,11 +77,8 @@ public class Solution {
 		rootNode.right.right.left.left = null;
 		rootNode.right.right.left.right = null;
 		rootNode.right.right.right.left = null;
-		rootNode.right.right.right.right = null;
-		
-		
+		rootNode.right.right.right.right = null;		
 		
 		System.out.println(sol.findPath(rootNode,15));
-
 	}
 }
