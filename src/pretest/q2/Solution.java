@@ -29,9 +29,7 @@ public class Solution {
 		curSum += rootNode.value;
 		nodes.add(rootNode);
 		if (sum == curSum && rootNode.left == null && rootNode.right == null){
-//			System.out.println(nodes);
 			paths.add((ArrayList<Node>)nodes.clone());
-//			System.out.println(paths);
 		}
 
 		if (rootNode.left != null) {
